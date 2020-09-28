@@ -28,13 +28,22 @@ public class Client {
 			return;
 		}
 		Scanner scanner = new Scanner(System.in);
+		String message =null;
 		while(true) {
-			String message = scanner.nextLine();
-			if (message.compareTo("quit")==0) {
-				break;	
+			message= scanner.nextLine();
+			String[] nums = message.split(" ");
+			for (String element : nums) {
+				if (element.charAt(0)<48||element.charAt(0)>57) {
+					message="quit";
+					System.out.println("Hay nhap dung dinh dang");
+					break;
+				}
 			}
-			out.println(message);
+			if (message.compareTo("quit")!=0){
+				break;
+			}
 		}
+		out.println(message);
 		try {
 			scanner.close();
 			socket.close();
